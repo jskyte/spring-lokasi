@@ -52,12 +52,17 @@ public class KecamatanServiceImpl implements KecamatanService {
 	public KecamatanEntity addKecamatan(KecamatanDto dto) {
 		// TODO Auto-generated method stub
 		KecamatanEntity kecamatanEntity = convertToKecamatanEntity(dto);
-		KabupatenEntity kabupatenEntity = kabupatenRepository.findByKodeKabupaten(dto.getKodeKabupaten());
-		ProvinsiEntity provinsiEntity = provinsiRepository.findByKodeProvinsi(kabupatenEntity.getProvinsiEntity().getKodeProvinsi());
-		kecamatanEntity.setKabupatenEntity(kabupatenEntity);
-		kecamatanEntity.setProvinsiEntity(provinsiEntity);
-		kecamatanRepository.save(kecamatanEntity);
-		return kecamatanEntity;
+		
+		if(dto.getKodeKecamatan() == kecamatanEntity.getKodeKecamatan()) {
+			return null;
+		} else {
+			KabupatenEntity kabupatenEntity = kabupatenRepository.findByKodeKabupaten(dto.getKodeKabupaten());
+			ProvinsiEntity provinsiEntity = provinsiRepository.findByKodeProvinsi(kabupatenEntity.getProvinsiEntity().getKodeProvinsi());
+			kecamatanEntity.setKabupatenEntity(kabupatenEntity);
+			kecamatanEntity.setProvinsiEntity(provinsiEntity);
+			kecamatanRepository.save(kecamatanEntity);
+			return kecamatanEntity;
+		}
 	}
 
 	@Override

@@ -42,7 +42,17 @@ public class DesaController {
 	@GetMapping("/get-by-kode/{kodeDesa}")
 	public ResponseEntity<?> getByKodeDesa(@PathVariable String kodeDesa) {
 		DesaEntity desaEntity = desaService.getByKodeDesa(kodeDesa);
-		return ResponseEntity.ok(desaEntity);
+		
+		if(desaEntity == null) {
+			StatusMessageDto<DesaEntity> result = new StatusMessageDto<>();
+			result.setStatus(HttpStatus.BAD_REQUEST.value());
+			result.setMessage("Data Not Found!");
+			result.setData(desaEntity);
+			return ResponseEntity.badRequest().body(result);
+		} else {
+			return ResponseEntity.ok(desaEntity);
+		}
+	
 	}
 	
 	@GetMapping("/get-all-active")
@@ -54,11 +64,20 @@ public class DesaController {
 	@PostMapping("/add-desa")
 	public ResponseEntity<?> addDesa(@RequestBody DesaDto dto){
 		DesaEntity desaEntity = desaService.addDesa(dto);
-		StatusMessageDto<DesaEntity> result = new StatusMessageDto<>();
-		result.setStatus(HttpStatus.OK.value());
-		result.setMessage("Data Inserted!");
-		result.setData(desaEntity);
-		return ResponseEntity.ok(result);	
+		
+		if(desaEntity == null) {
+			StatusMessageDto<DesaEntity> result = new StatusMessageDto<>();
+			result.setStatus(HttpStatus.BAD_REQUEST.value());
+			result.setMessage("Duplicate entry for Kode Desa!");
+			result.setData(null);
+			return ResponseEntity.badRequest().body(result);
+		} else {
+			StatusMessageDto<DesaEntity> result = new StatusMessageDto<>();
+			result.setStatus(HttpStatus.OK.value());
+			result.setMessage("Data Inserted!");
+			result.setData(desaEntity);
+			return ResponseEntity.ok(result);	
+		}	
 	}
 	
 	@PutMapping("/update-desa/{idDesa}")

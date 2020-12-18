@@ -57,14 +57,19 @@ public class DesaServiceImpl implements DesaService{
 	public DesaEntity addDesa(DesaDto dto) {
 		// TODO Auto-generated method stub
 		DesaEntity desaEntity = convertToDesaEntity(dto);
-		KecamatanEntity kecamatanEntity = kecamatanRepository.findByKodeKecamatan(dto.getKodeKecamatan());
-		KabupatenEntity kabupatenEntity = kabupatenRepository.findByKodeKabupaten(kecamatanEntity.getKabupatenEntity().getKodeKabupaten());
-		ProvinsiEntity provinsiEntity = provinsiRepository.findByKodeProvinsi(kabupatenEntity.getProvinsiEntity().getKodeProvinsi());
-		desaEntity.setKecamatanEntity(kecamatanEntity);
-		desaEntity.setKabupatenEntity(kabupatenEntity);
-		desaEntity.setProvinsiEntity(provinsiEntity);
-		desaRepository.save(desaEntity);
-		return desaEntity;
+		
+		if (dto.getKodeDesa() == desaEntity.getKodeDesa()) {
+			return null;
+		} else {
+			KecamatanEntity kecamatanEntity = kecamatanRepository.findByKodeKecamatan(dto.getKodeKecamatan());
+			KabupatenEntity kabupatenEntity = kabupatenRepository.findByKodeKabupaten(kecamatanEntity.getKabupatenEntity().getKodeKabupaten());
+			ProvinsiEntity provinsiEntity = provinsiRepository.findByKodeProvinsi(kabupatenEntity.getProvinsiEntity().getKodeProvinsi());
+			desaEntity.setKecamatanEntity(kecamatanEntity);
+			desaEntity.setKabupatenEntity(kabupatenEntity);
+			desaEntity.setProvinsiEntity(provinsiEntity);
+			desaRepository.save(desaEntity);
+			return desaEntity;
+		}	
 	}
 
 	@Override

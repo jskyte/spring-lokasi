@@ -40,7 +40,17 @@ public class KecamatanController {
 	@GetMapping("/get-by-kode/{kodeKecamatan}")
 	public ResponseEntity<?> getByKodeKecamatan(@PathVariable String kodeKecamatan) {
 		KecamatanEntity kecamatanEntity = kecamatanService.getByKodeKecamatan(kodeKecamatan);
-		return ResponseEntity.ok(kecamatanEntity);
+		
+		if (kecamatanEntity == null) {
+			StatusMessageDto<KecamatanEntity> result = new StatusMessageDto<>();
+			result.setStatus(HttpStatus.BAD_REQUEST.value());
+			result.setMessage("Data Not Found!");
+			result.setData(kecamatanEntity);
+			return ResponseEntity.badRequest().body(result);
+		} else {
+			return ResponseEntity.ok(kecamatanEntity);
+		}
+		
 	}
 	
 	@GetMapping("/get-all-active")
@@ -52,11 +62,20 @@ public class KecamatanController {
 	@PostMapping("/add-kecamatan")
 	public ResponseEntity<?> addKecamatan(@RequestBody KecamatanDto dto) {
 		KecamatanEntity kecamatanEntity = kecamatanService.addKecamatan(dto);
-		StatusMessageDto<KecamatanEntity> result = new StatusMessageDto<>();
-		result.setStatus(HttpStatus.OK.value());
-		result.setMessage("Data Inserted!");
-		result.setData(kecamatanEntity);
-		return ResponseEntity.ok(result);		
+		
+		if (kecamatanEntity == null) {
+			StatusMessageDto<KecamatanEntity> result = new StatusMessageDto<>();
+			result.setStatus(HttpStatus.BAD_REQUEST.value());
+			result.setMessage("Duplicate entry for Kode Kecamatan!");
+			result.setData(null);
+			return ResponseEntity.badRequest().body(result);
+		} else {
+			StatusMessageDto<KecamatanEntity> result = new StatusMessageDto<>();
+			result.setStatus(HttpStatus.OK.value());
+			result.setMessage("Data Inserted!");
+			result.setData(kecamatanEntity);
+			return ResponseEntity.ok(result);	
+		}	
 	}
 	
 	@PutMapping("/update-kecamatan/{idKecamatan}")

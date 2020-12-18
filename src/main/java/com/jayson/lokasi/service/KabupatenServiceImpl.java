@@ -47,10 +47,15 @@ public class KabupatenServiceImpl implements KabupatenService{
 	public KabupatenEntity addKabupaten(KabupatenDto dto) {
 		// TODO Auto-generated method stub
 		KabupatenEntity kabupatenEntity = convertToKabupatenEntity(dto);
-		ProvinsiEntity provinsiEntity = provinsiRepository.findByKodeProvinsi(dto.getKodeProvinsi());
-		kabupatenEntity.setProvinsiEntity(provinsiEntity);
-		kabupatenRepository.save(kabupatenEntity);
-		return kabupatenEntity;
+		
+		if(dto.getKodeKabupaten() == kabupatenEntity.getKodeKabupaten()) {
+			return null;
+		} else {
+			ProvinsiEntity provinsiEntity = provinsiRepository.findByKodeProvinsi(dto.getKodeProvinsi());
+			kabupatenEntity.setProvinsiEntity(provinsiEntity);
+			kabupatenRepository.save(kabupatenEntity);
+			return kabupatenEntity;
+		}
 	}
 	
 	@Override
