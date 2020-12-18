@@ -41,6 +41,12 @@ public class KabupatenController {
 		return ResponseEntity.ok(kabupatenEntity);
 	}
 	
+	@GetMapping("/get-all-active")
+	public ResponseEntity<?> getActiveKabupaten() {
+		List<KabupatenEntity> kabupatenEntity = kabupatenService.getActiveKabupaten();
+		return ResponseEntity.ok(kabupatenEntity);
+	}
+	
 	@PostMapping("/add-kabupaten")
 	public ResponseEntity<?> addKabupaten(@RequestBody KabupatenDto dto){
 		KabupatenEntity kabupatenEntity = kabupatenService.addKabupaten(dto);

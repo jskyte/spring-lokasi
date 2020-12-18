@@ -12,4 +12,5 @@ public interface KecamatanService {
 	KecamatanEntity updateKecamatan(Integer idKecamatan, KecamatanDto dto);
 	KecamatanEntity deleteKecamatan(Integer idKecamatan);
 	KecamatanEntity deleteKecamatanStatus(Integer idKecamatan);
+	List<KecamatanEntity> getActiveKecamatan();
 }

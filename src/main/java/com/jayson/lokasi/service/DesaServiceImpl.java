@@ -45,6 +45,13 @@ public class DesaServiceImpl implements DesaService{
 		DesaEntity desaEntity = desaRepository.findByKodeDesa(kodeDesa);
 		return desaEntity;
 	}
+	
+	@Override
+	public List<DesaEntity> getActiveDesa() {
+		// TODO Auto-generated method stub
+		List<DesaEntity> desaEntities = desaRepository.getActiveDesa();
+		return desaEntities;
+	}
 
 	@Override
 	public DesaEntity addDesa(DesaDto dto) {
@@ -99,6 +106,8 @@ public class DesaServiceImpl implements DesaService{
 		desaEntity.setNamaDesa(dto.getNamaDesa());
 		return desaEntity;
 	}
+
+	
 
 
 }

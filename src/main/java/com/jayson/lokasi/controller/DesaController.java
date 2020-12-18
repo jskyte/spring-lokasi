@@ -45,6 +45,12 @@ public class DesaController {
 		return ResponseEntity.ok(desaEntity);
 	}
 	
+	@GetMapping("/get-all-active")
+	public ResponseEntity<?> getActiveDesa(){
+		List<DesaEntity> desaEntities = desaService.getActiveDesa();
+		return ResponseEntity.ok(desaEntities);
+	}
+	
 	@PostMapping("/add-desa")
 	public ResponseEntity<?> addDesa(@RequestBody DesaDto dto){
 		DesaEntity desaEntity = desaService.addDesa(dto);

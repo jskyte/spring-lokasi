@@ -37,6 +37,13 @@ public class KabupatenServiceImpl implements KabupatenService{
 	}
 	
 	@Override
+	public List<KabupatenEntity> getActiveKabupaten() {
+		// TODO Auto-generated method stub
+		List<KabupatenEntity> kabupatenEntity = kabupatenRepository.getActiveKabupaten();
+		return kabupatenEntity;
+	}
+	
+	@Override
 	public KabupatenEntity addKabupaten(KabupatenDto dto) {
 		// TODO Auto-generated method stub
 		KabupatenEntity kabupatenEntity = convertToKabupatenEntity(dto);
@@ -81,6 +88,8 @@ public class KabupatenServiceImpl implements KabupatenService{
 		kabupatenEntity.setNamaKabupaten(dto.getNamaKabupaten());
 		return kabupatenEntity;
 	}
+
+	
 
 	
 

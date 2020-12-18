@@ -12,4 +12,5 @@ public interface DesaService {
 	DesaEntity updateDesa(Integer idDesa, DesaDto dto);
 	DesaEntity deleteDesa(Integer idDesa);
 	DesaEntity deleteDesaStatus(Integer idDesa);
+	List<DesaEntity> getActiveDesa();
 }

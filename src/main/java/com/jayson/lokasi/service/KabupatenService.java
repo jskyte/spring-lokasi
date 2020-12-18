@@ -12,4 +12,5 @@ public interface KabupatenService {
 	KabupatenEntity updateKabupaten(Integer idKabupaten, KabupatenDto dto);
 	KabupatenEntity deleteKabupaten(Integer idKabupaten);
 	KabupatenEntity deleteKabupatenStatus(Integer idKabupaten);
+	List<KabupatenEntity> getActiveKabupaten();
 }

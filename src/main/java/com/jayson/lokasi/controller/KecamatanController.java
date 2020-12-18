@@ -43,6 +43,12 @@ public class KecamatanController {
 		return ResponseEntity.ok(kecamatanEntity);
 	}
 	
+	@GetMapping("/get-all-active")
+	public ResponseEntity<?> getActiveKecamatan(){
+		List<KecamatanEntity> kecamatanEntities = kecamatanService.getActiveKecamatan();
+		return ResponseEntity.ok(kecamatanEntities);
+	}
+	
 	@PostMapping("/add-kecamatan")
 	public ResponseEntity<?> addKecamatan(@RequestBody KecamatanDto dto) {
 		KecamatanEntity kecamatanEntity = kecamatanService.addKecamatan(dto);

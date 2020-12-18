@@ -40,6 +40,13 @@ public class KecamatanServiceImpl implements KecamatanService {
 		KecamatanEntity kecamatanEntity = kecamatanRepository.findByKodeKecamatan(kodeKecamatan);
 		return kecamatanEntity;
 	}
+	
+	@Override
+	public List<KecamatanEntity> getActiveKecamatan() {
+		// TODO Auto-generated method stub
+		List<KecamatanEntity> kecamatanEntities = kecamatanRepository.getActiveKecamatan();
+		return kecamatanEntities;
+	}
 
 	@Override
 	public KecamatanEntity addKecamatan(KecamatanDto dto) {
@@ -89,6 +96,8 @@ public class KecamatanServiceImpl implements KecamatanService {
 		kecamatanEntity.setNamaKecamatan(dto.getNamaKecamatan());
 		return kecamatanEntity;
 	}
+
+	
 
 	
 
