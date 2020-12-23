@@ -63,19 +63,13 @@ public class KecamatanController {
 	public ResponseEntity<?> addKecamatan(@RequestBody KecamatanDto dto) {
 		KecamatanEntity kecamatanEntity = kecamatanService.addKecamatan(dto);
 		
-		if (kecamatanEntity == null) {
-			StatusMessageDto<KecamatanEntity> result = new StatusMessageDto<>();
-			result.setStatus(HttpStatus.BAD_REQUEST.value());
-			result.setMessage("Duplicate entry for Kode Kecamatan!");
-			result.setData(null);
-			return ResponseEntity.badRequest().body(result);
-		} else {
+
 			StatusMessageDto<KecamatanEntity> result = new StatusMessageDto<>();
 			result.setStatus(HttpStatus.OK.value());
 			result.setMessage("Data Inserted!");
 			result.setData(kecamatanEntity);
 			return ResponseEntity.ok(result);	
-		}	
+			
 	}
 	
 	@PutMapping("/update-kecamatan/{idKecamatan}")

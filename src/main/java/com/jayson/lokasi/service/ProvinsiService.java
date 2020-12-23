@@ -8,6 +8,7 @@ import com.jayson.lokasi.entity.ProvinsiEntity;
 public interface ProvinsiService {
 	List<ProvinsiEntity> getProvinsi();
 	ProvinsiEntity getByKodeProvins(String kodeProvinsi);
+	ProvinsiEntity getByIdProvinsi(Integer id);
 	ProvinsiEntity addProvinsi(ProvinsiDto dto);
 	ProvinsiEntity updateProvinsi(Integer idProvinsi, ProvinsiDto dto);
 	ProvinsiEntity deleteProvinsi(Integer idProvinsi);

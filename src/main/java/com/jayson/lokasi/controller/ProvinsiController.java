@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.jayson.lokasi.service.ProvinsiService;
 
 @RestController
 @RequestMapping("/provinsi")
+//@CrossOrigin(origins = "localhost:3000")
 public class ProvinsiController {
 	
 	@Autowired
@@ -49,6 +51,12 @@ public class ProvinsiController {
 		
 	}
 	
+	@GetMapping("/get-by-id/{id}")
+	public ResponseEntity<?> getByIdProvinsi(@PathVariable Integer id){
+		ProvinsiEntity provinsiEntity = provinsiService.getByIdProvinsi(id);
+		return ResponseEntity.ok(provinsiEntity);
+	}
+	
 	@GetMapping("/get-all-active")
 	public ResponseEntity<?> getActiveProvinsi(){
 		List<ProvinsiEntity> provinsiEntities = provinsiService.getActiveProvinsi();
@@ -59,19 +67,12 @@ public class ProvinsiController {
 	public ResponseEntity<?> addProvinsi(@RequestBody ProvinsiDto dto) {
 		ProvinsiEntity provinsiEntity = provinsiService.addProvinsi(dto);
 		
-		if(provinsiEntity == null) {
-			StatusMessageDto<ProvinsiEntity> result = new StatusMessageDto<>();
-			result.setStatus(HttpStatus.BAD_REQUEST.value());
-			result.setMessage("Duplicate entry for Kode Provinsi!");
-			result.setData(null);
-			return ResponseEntity.badRequest().body(result);
-		} else {
 			StatusMessageDto<ProvinsiEntity> result = new StatusMessageDto<>();
 			result.setStatus(HttpStatus.OK.value());
 			result.setMessage("Data Inserted!");
 			result.setData(provinsiEntity);
 			return ResponseEntity.ok(result);
-		}
+		
 
 	}
 	

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Provinsi</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/webjars/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+<link rel="stylesheet" th:src="@{/css/style.css}">
+</head>
+<body>
+	
+
+	
+	<div th:replace="fragments/header :: header"></div>
+	<br>
+	
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<h2>Table Provinsi</h2>
+		</div>
+	</div>
+	
+	<div class="container" style="border: 1px solid #808080; padding: 10px; border-radius: 5px">
+		<form id="form-submit">
+			<div class="form-group">
+				<label class="col-sm-2">Kode Provinsi</label>
+				<input class="form-control" type="text" name="kodeProvinsi" id="kodeProvinsi">
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2">Nama Provinsi</label>
+				<input class="form-control" type="text" name="namaProvinsi" id="namaProvinsi">
+			</div>
+			
+			<button type="submit" id="btn-save" class="btn btn-primary">Simpan</button>
+			
+		</form>
+	</div>
+	
+	<br>
+	
+	<div class="container" style="border: 1px solid #808080; padding: 10px; border-radius: 5px">
+	<table class="table table-striped" id="table-provinsi">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">Kode Provinsi</th>
+	      <th scope="col">Nama Provinsi</th>
+	      <th scope="col">Action</th>
+	    </tr>
+	  </thead>
+	  <tbody id="body-provinsi">
+	  </tbody>
+	</table>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+	
+	<!-- Script -->
+	<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" type="text/javascript"></script>
+	
+	<script>
+		tableProvinsi.getProvinsi();
+		
+		$('#btn-save').click(function(){
+			formProvinsi.save();
+			tableProvinsi.create();
+		})
+	</script>
+	
+</body>
+</html>

@@ -58,9 +58,6 @@ public class DesaServiceImpl implements DesaService{
 		// TODO Auto-generated method stub
 		DesaEntity desaEntity = convertToDesaEntity(dto);
 		
-		if (dto.getKodeDesa() == desaEntity.getKodeDesa()) {
-			return null;
-		} else {
 			KecamatanEntity kecamatanEntity = kecamatanRepository.findByKodeKecamatan(dto.getKodeKecamatan());
 			KabupatenEntity kabupatenEntity = kabupatenRepository.findByKodeKabupaten(kecamatanEntity.getKabupatenEntity().getKodeKabupaten());
 			ProvinsiEntity provinsiEntity = provinsiRepository.findByKodeProvinsi(kabupatenEntity.getProvinsiEntity().getKodeProvinsi());
@@ -69,7 +66,7 @@ public class DesaServiceImpl implements DesaService{
 			desaEntity.setProvinsiEntity(provinsiEntity);
 			desaRepository.save(desaEntity);
 			return desaEntity;
-		}	
+		
 	}
 
 	@Override

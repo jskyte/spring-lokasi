@@ -51,6 +51,12 @@ public class KabupatenController {
 		
 	}
 	
+	@GetMapping("/get-by-id/{id}")
+	public ResponseEntity<?> getByIdKabupaten(@PathVariable Integer id) {
+		KabupatenEntity kabupatenEntity = kabupatenService.getByIdKabupaten(id);
+		return ResponseEntity.ok(kabupatenEntity);
+	}
+	
 	@GetMapping("/get-all-active")
 	public ResponseEntity<?> getActiveKabupaten() {
 		List<KabupatenEntity> kabupatenEntity = kabupatenService.getActiveKabupaten();
@@ -61,18 +67,13 @@ public class KabupatenController {
 	public ResponseEntity<?> addKabupaten(@RequestBody KabupatenDto dto){
 		KabupatenEntity kabupatenEntity = kabupatenService.addKabupaten(dto);
 		
-		if(kabupatenEntity == null) {
-			StatusMessageDto<KabupatenEntity> result = new StatusMessageDto<>();
-			result.setMessage("Duplicate entry for Kode Kabupaten!");
-			result.setData(null);
-			return ResponseEntity.badRequest().body(result);
-		} else {
+
 			StatusMessageDto<KabupatenEntity> result = new StatusMessageDto<>();
 			result.setStatus(HttpStatus.OK.value());
 			result.setMessage("Data Inserted!");
 			result.setData(kabupatenEntity);
 			return ResponseEntity.ok(result);
-		}	
+		
 	}
 	
 	

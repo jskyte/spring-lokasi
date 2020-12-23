@@ -65,19 +65,12 @@ public class DesaController {
 	public ResponseEntity<?> addDesa(@RequestBody DesaDto dto){
 		DesaEntity desaEntity = desaService.addDesa(dto);
 		
-		if(desaEntity == null) {
-			StatusMessageDto<DesaEntity> result = new StatusMessageDto<>();
-			result.setStatus(HttpStatus.BAD_REQUEST.value());
-			result.setMessage("Duplicate entry for Kode Desa!");
-			result.setData(null);
-			return ResponseEntity.badRequest().body(result);
-		} else {
 			StatusMessageDto<DesaEntity> result = new StatusMessageDto<>();
 			result.setStatus(HttpStatus.OK.value());
 			result.setMessage("Data Inserted!");
 			result.setData(desaEntity);
 			return ResponseEntity.ok(result);	
-		}	
+			
 	}
 	
 	@PutMapping("/update-desa/{idDesa}")

@@ -32,18 +32,22 @@ public class ProvinsiServiceImpl implements ProvinsiService{
 		ProvinsiEntity provinsiEntities = provinsiRepository.findByKodeProvinsi(kodeProvinsi);
 		return provinsiEntities;
 	}
+	
+
+	@Override
+	public ProvinsiEntity getByIdProvinsi(Integer id) {
+		// TODO Auto-generated method stub
+		ProvinsiEntity provinsiEntity = provinsiRepository.findById(id).get();
+		return provinsiEntity;
+	}
 
 	@Override
 	public ProvinsiEntity addProvinsi(ProvinsiDto dto) {
 		// TODO Auto-generated method stub
 		ProvinsiEntity provinsiEntity = convertToProvinsiEntity(dto);
-		
-		if (dto.getKodeProvinsi() == provinsiEntity.getKodeProvinsi()) {
-			return null;
-		} else {
 			provinsiRepository.save(provinsiEntity);
 			return provinsiEntity;
-		}
+		
 	}
 	
 	@Override
@@ -86,6 +90,7 @@ public class ProvinsiServiceImpl implements ProvinsiService{
 		List<ProvinsiEntity> provinsiEntities = provinsiRepository.getActiveProvinsi();
 		return provinsiEntities;
 	}
+
 
 	
 	

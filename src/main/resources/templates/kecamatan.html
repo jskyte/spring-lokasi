@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Kecamatan</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/webjars/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" th:src="@{/css/style.css}">
+</head>
+<body>
+	
+	<div th:replace="fragments/header :: header"></div>
+	
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<h2>Table Kecamatan</h2>
+		</div>
+	</div>
+	
+	<div class="container">
+	<table class="table table-striped" id="table-kecamatan">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">Kode Kecamatan</th>
+	      <th scope="col">Nama Kecamatan</th>
+	      <th scope="col">Kode Kabupaten</th>
+	      <th scope="col">Kode Provinsi</th>
+	    </tr>
+	  </thead>
+	  <tbody id="body-kecamatan">
+
+	  </tbody>
+	</table>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+	
+	<!-- Script -->
+	<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	
+	<script>
+		tableKecamatan.create()
+	</script>
+	
+</body>
+</html>

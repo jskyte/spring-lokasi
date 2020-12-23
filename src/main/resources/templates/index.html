@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/webjars/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" th:src="@{/css/style.css}">
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container" th:fragment="content-body"></div>
+	<div class="footer" th:replace="fragments/footer :: footer"></div>
+	
+	<!-- Script -->
+	<script type="text/javascript" src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/script.js}"></script>
+	
+</body>
+</html>
